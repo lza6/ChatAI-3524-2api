@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChatAI 35.2.4 → 2API · Demo</title>
+<style>
+  :root {
+    --bg: #0b0d12; --panel: #141821; --panel2: #1b2130; --line: #262d3d;
+    --fg: #e6e9ef; --muted: #8b94a7; --accent: #5b8cff; --ok: #35d07f; --err: #ff5f6d;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.6 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 20px 16px 64px; }
+  header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  header h1 { font-size: 17px; margin: 0; font-weight: 600; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); display: inline-block; margin-right: 5px; }
+  .dot.ok { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+  .dot.err { background: var(--err); }
+  .bar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 16px 0; }
+  select, button, input[type=number] { background: var(--panel2); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; font: inherit; }
+  select { min-width: 190px; }
+  button { cursor: pointer; }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; padding: 8px 18px; }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  #log { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; min-height: 340px; max-height: 58vh; overflow-y: auto; }
+  .msg { display: flex; gap: 10px; margin-bottom: 18px; }
+  .msg .who { flex: 0 0 46px; font-size: 11px; color: var(--muted); padding-top: 3px; text-align: right; }
+  .msg .body { flex: 1; white-space: pre-wrap; word-break: break-word; }
+  .msg.user .body { color: #c9d4ea; }
+  .msg.assistant .body { color: #f2f5fa; }
+  .msg.assistant .body::after { content: ""; }
+  .meta { font-size: 11px; color: var(--muted); margin-top: 6px; }
+  .err { color: var(--err); }
+  #composer { display: flex; gap: 10px; margin-top: 14px; align-items: flex-end; }
+  textarea { flex: 1; background: var(--panel2); color: var(--fg); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; font: inherit; resize: vertical; min-height: 52px; max-height: 200px; }
+  textarea:focus, select:focus, input:focus { outline: none; border-color: var(--accent); }
+  .panel { margin-top: 22px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .panel h3 { margin: 0 0 10px; font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: .04em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .kv { background: var(--panel2); border-radius: 8px; padding: 9px 11px; }
+  .kv .k { font-size: 11px; color: var(--muted); }
+  .kv .v { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  code { background: #10141c; border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>ChatAI 35.2.4 → OpenAI 2API</h1>
+    <span class="tag">com.chatbot.ai.aichat.openaibot.chat</span>
+    <span class="tag">upstream chatapi.begamob.com</span>
+    <span class="tag" id="healthTag"><span class="dot" id="healthDot"></span><span id="healthText">检测中…</span></span>
+  </header>
+
+  <div class="bar">
+    <select id="model"></select>
+    <label style="color:var(--muted);font-size:12px">max_tokens
+      <input id="maxTokens" type="number" value="1024" min="1" max="16384" style="width:96px">
+    </label>
+    <label style="color:var(--muted);font-size:12px">temperature
+      <input id="temp" type="number" value="0.7" step="0.1" min="0" max="2" style="width:76px">
+    </label>
+    <label style="color:var(--muted);font-size:12px"><input id="stream" type="checkbox" checked> 流式（网关模拟 SSE）</label>
+    <input id="imgUrl" placeholder="可选：图片 URL（多模态走 v3 通道）" style="flex:1;min-width:220px">
+    <button id="summarize">摘要模式</button>
+    <button id="clear">清空</button>
+  </div>
+
+  <div id="log">
+    <div class="msg assistant"><div class="who">系统</div><div class="body">文本聊天直连上游 <code>POST /api/v1/chat</code>（17 模型）；填了「图片 URL」即走多模态 <code>POST /api/v3/chatCustom</code>（chat-ai-iaa 节点，实测可读图）；「摘要模式」走 <code>/api/v1/summarize_text</code>。鉴权为 APK 内硬编码密钥自签的 JWT-HS256。上游无流式能力（带 <code>stream</code> 字段直接 400），流式由网关按标点切块模拟。</div></div>
+  </div>
+
+  <div id="composer">
+    <textarea id="input" placeholder="输入问题，Enter 发送，Shift+Enter 换行"></textarea>
+    <button class="primary" id="send">发送</button>
+  </div>
+
+  <div class="panel">
+    <h3>网关实时统计（/stats）</h3>
+    <div class="grid">
+      <div class="kv"><div class="k">请求总数</div><div class="v" id="sReq">–</div></div>
+      <div class="kv"><div class="k">上游成功</div><div class="v" id="sOk">–</div></div>
+      <div class="kv"><div class="k">上游失败</div><div class="v" id="sErr">–</div></div>
+      <div class="kv"><div class="k">P50 延迟</div><div class="v" id="sP50">–</div></div>
+      <div class="kv"><div class="k">P95 延迟</div><div class="v" id="sP95">–</div></div>
+      <div class="kv"><div class="k">可用模型</div><div class="v" id="sModels">–</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const GROUPS = {
+  'OpenAI': ['gpt-4o', 'gpt-4o-mini', 'gpt-4.1', 'gpt-4.1-mini', 'gpt-5', 'gpt-5-mini', 'gpt-o3-mini', 'gpt-3.5-turbo'],
+  'Anthropic': ['claude-4.5-opus', 'claude-4.5-sonnet', 'claude-3.7-sonnet'],
+  'Google': ['gemini-3-pro', 'gemini-2.5-flash'],
+  '其它': ['deepseek', 'grok-3', 'llama4', 'llama-3.1'],
+};
+let history = [];
+
+function buildModelSelect() {
+  const sel = $('model');
+  for (const [g, list] of Object.entries(GROUPS)) {
+    const og = document.createElement('optgroup');
+    og.label = g;
+    for (const m of list) {
+      const o = document.createElement('option');
+      o.value = m; o.textContent = m;
+      og.appendChild(o);
+    }
+    sel.appendChild(og);
+  }
+  sel.value = 'gpt-4o-mini';
+}
+
+function addMsg(who, text, cls) {
+  const d = document.createElement('div');
+  d.className = 'msg ' + cls;
+  d.innerHTML = '<div class="who">' + who + '</div><div class="body"></div>';
+  d.querySelector('.body').textContent = text;
+  $('log').appendChild(d);
+  $('log').scrollTop = $('log').scrollHeight;
+  return d.querySelector('.body');
+}
+
+async function health() {
+  try {
+    const r = await fetch('/health');
+    const j = await r.json();
+    $('healthDot').className = 'dot ok';
+    $('healthText').textContent = '网关正常 · ' + j.models + ' 模型';
+    $('sModels').textContent = j.models;
+  } catch (e) {
+    $('healthDot').className = 'dot err';
+    $('healthText').textContent = '网关不可达';
+  }
+  try {
+    const s = await (await fetch('/stats')).json();
+    $('sReq').textContent = s.requests;
+    $('sOk').textContent = s.upstream_ok;
+    $('sErr').textContent = s.upstream_err;
+    $('sP50').textContent = s.p50_ms + ' ms';
+    $('sP95').textContent = s.p95_ms + ' ms';
+  } catch (e) { /* ignore */ }
+}
+
+async function send() {
+  const text = $('input').value.trim();
+  if (!text) return;
+  const imgUrl = $('imgUrl').value.trim();
+  $('input').value = '';
+  $('send').disabled = true;
+  addMsg('你', text + (imgUrl ? '\n[图片] ' + imgUrl : ''), 'user');
+  if (imgUrl) {
+    history.push({ role: 'user', content: [
+      { type: 'text', text },
+      { type: 'image_url', image_url: { url: imgUrl } },
+    ] });
+  } else {
+    history.push({ role: 'user', content: text });
+  }
+  const body = addMsg('AI', '', 'assistant');
+  const model = $('model').value;
+  const useStream = $('stream').checked && !imgUrl;   // 多模态走 v3，非流式
+  const t0 = performance.now();
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  try {
+    const resp = await fetch('/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model, messages: history,
+        max_tokens: parseInt($('maxTokens').value) || 1024,
+        temperature: parseFloat($('temp').value),
+        stream: useStream,
+      }),
+    });
+    if (!resp.ok) {
+      const j = await resp.json().catch(() => ({}));
+      throw new Error((j.error && j.error.message) || ('HTTP ' + resp.status));
+    }
+    if (!useStream) {
+      const j = await resp.json();
+      body.textContent = j.choices[0].message.content;
+      meta.textContent = model + ' · ' + (performance.now() - t0).toFixed(0) + ' ms · 上游 ' +
+        j.x_upstream_ms + ' ms · tokens ' + j.usage.total_tokens;
+      history.push({ role: 'assistant', content: body.textContent });
+    } else {
+      const reader = resp.body.getReader();
+      const dec = new TextDecoder();
+      let buf = '', acc = '', usage = null;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        let idx;
+        while ((idx = buf.indexOf('\n\n')) >= 0) {
+          const chunk = buf.slice(0, idx).trim();
+          buf = buf.slice(idx + 2);
+          if (!chunk.startsWith('data:')) continue;
+          const payload = chunk.slice(5).trim();
+          if (payload === '[DONE]') continue;
+          try {
+            const ev = JSON.parse(payload);
+            if (ev.usage) usage = ev.usage;
+            const delta = ev.choices[0].delta || {};
+            if (delta.content) {
+              acc += delta.content;
+              body.textContent = acc;
+              $('log').scrollTop = $('log').scrollHeight;
+            }
+          } catch (e) { /* 忽略半包 */ }
+        }
+      }
+      meta.textContent = model + ' · ' + (performance.now() - t0).toFixed(0) + ' ms · SSE 模拟 · tokens ' +
+        (usage ? usage.total_tokens : '?');
+      history.push({ role: 'assistant', content: acc });
+    }
+  } catch (e) {
+    body.textContent = '请求失败：' + e.message;
+    body.classList.add('err');
+  } finally {
+    body.parentElement.appendChild(meta);
+    $('send').disabled = false;
+    health();
+  }
+}
+
+$('send').onclick = send;
+$('summarize').onclick = async () => {
+  const text = $('input').value.trim();
+  if (!text) return;
+  $('input').value = '';
+  addMsg('你', text, 'user');
+  const body = addMsg('摘要', '生成中…', 'assistant');
+  const t0 = performance.now();
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  try {
+    const r = await fetch('/v1/summarize', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text }),
+    });
+    const j = await r.json();
+    if (!r.ok) throw new Error((j.error && j.error.message) || ('HTTP ' + r.status));
+    body.textContent = j.summary + (j.suggestions.length
+      ? '\n\n推荐追问：\n' + j.suggestions.map((s, i) => (i + 1) + '. ' + s).join('\n') : '');
+    meta.textContent = '/api/v1/summarize_text · ' + (performance.now() - t0).toFixed(0) + ' ms';
+  } catch (e) {
+    body.textContent = '摘要失败：' + e.message;
+    body.classList.add('err');
+  } finally {
+    body.parentElement.appendChild(meta);
+    health();
+  }
+};
+$('input').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+});
+$('clear').onclick = () => {
+  history = [];
+  $('log').innerHTML = '';
+};
+buildModelSelect();
+health();
+setInterval(health, 5000);
+</script>
+</body>
+</html>
