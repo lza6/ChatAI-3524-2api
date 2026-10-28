@@ -35,6 +35,9 @@ MODELS = ['gpt-4o', 'gpt-4o-mini', 'gpt-5', 'gpt-5-mini', 'gpt-4.1', 'gpt-4.1-mi
           'gemini-3-pro', 'llama-3.1', 'llama4', 'claude-3.7-sonnet',
           'claude-4.5-sonnet', 'claude-4.5-opus']
 MODEL_SET = set(MODELS)
+# 别名：上游 17 个模型名实测是同一个后端模型（见 model_quality_eval.md），
+# 接 new-api 时建议统一用这个中性名，别按 gpt-5 / claude-opus 的名字售价。
+ALIASES = {'chatai-default': 'gpt-4o-mini', 'chatai': 'gpt-4o-mini', 'default': 'gpt-4o-mini'}
 
 stats_lock = threading.Lock()
 stats = {'requests': 0, 'upstream_ok': 0, 'upstream_err': 0, 'latency_ms': [],
@@ -263,7 +266,7 @@ class Handler(BaseHTTPRequestHandler):
         if path == '/v1/models':
             return self._json(200, {'object': 'list',
                                     'data': [{'id': m, 'object': 'model', 'owned_by': 'begamob'}
-                                             for m in MODELS]})
+                                             for m in MODELS + list(ALIASES)]})
         if path == '/stats':
             with stats_lock:
                 lat = sorted(stats['latency_ms'])
@@ -317,7 +320,8 @@ class Handler(BaseHTTPRequestHandler):
         model = req.get('model')
         if not model:
             return self._err(400, 'model is required')
-        if model not in MODEL_SET:
+        upstream_model = ALIASES.get(model, model)
+        if upstream_model not in MODEL_SET:
             # 上游对未知模型会静默兜底成默认模型并返回 200，网关侧必须自己白名单拦截
             return self._err(400, f'unknown model: {model}; see GET /v1/models')
 
@@ -343,9 +347,9 @@ class Handler(BaseHTTPRequestHandler):
 
         try:
             if vision:
-                content, ms = upstream_chat_v3(model, raw_messages, max_tokens)
+                content, ms = upstream_chat_v3(upstream_model, raw_messages, max_tokens)
             else:
-                content, ms = upstream_chat(model, messages, max_tokens, temperature)
+                content, ms = upstream_chat(upstream_model, messages, max_tokens, temperature)
         except Exception as e:
             _record(err=str(e))
             return self._err(502, 'upstream: ' + str(e)[:200], 'upstream_error')
@@ -404,5 +408,7 @@ class Handler(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8916))
-    print(f'ChatAI 35.2.4 2API demo on http://127.0.0.1:{port}  upstream={UPSTREAM}  models={len(MODELS)}')
-    ThreadingHTTPServer(('127.0.0.1', port), Handler).serve_forever()
+    host = os.environ.get('HOST', '127.0.0.1')   # docker/局域网对接时设 HOST=0.0.0.0
+    print(f'ChatAI 35.2.4 2API demo on http://{host}:{port}  upstream={UPSTREAM}  '
+          f'models={len(MODELS)}+{len(ALIASES)} alias')
+    ThreadingHTTPServer((host, port), Handler).serve_forever()

@@ -6,10 +6,28 @@
 
 ---
 
+> ## ⚠️ 先读这三条，否则会误判这个项目
+> 1. **「17 个模型」其实是 1 个后端模型**——3 组固定 prompt × 17 个模型名，每种只有 1 种字节级一致的答案，连错都一起错。
+>    详见 [`model_quality_eval.md`](./model_quality_eval.md)。接渠道**不要按模型名差异化定价**。
+> 2. **上游没有流式**——带 `stream` 字段直接 400，SSE 由网关本地切块模拟，不是真流。
+> 3. **绘图不可用**——`generate_art` 恒 400、`/api/v2/art` 恒 500、`gen-anime-ai` 域已死。
+
+## 📚 文档索引
+
+| 文档 | 给谁看 | 内容 |
+|---|---|---|
+| [`docs/NEWAPI-INTEGRATION.md`](./docs/NEWAPI-INTEGRATION.md) | **要对接 new-api 的执行会话** | 两条路（零改码 / 原生渠道 type 74）、渠道配置表、Go adaptor 骨架、计费口径、验收清单、故障排查表 |
+| [`docs/PROTOCOL.md`](./docs/PROTOCOL.md) | 要复刻协议的人 | 30 行可跑的 JWT 实现、全部端点表、请求/响应/错误结构、硬上限、7 条必须的防护 |
+| [`model_quality_eval.md`](./model_quality_eval.md) | 选型/定价的人 | 「17 名字 = 1 后端」的证据链 + 那个后端会什么/不会什么 |
+| [`benchmark_results.md`](./benchmark_results.md) | 关心稳定性的人 | 协议边界、R1 17/17、阶梯并发 1→50、上下文边界、绘图判死证据、本机代理约束 |
+
+---
+
 ## TL;DR
 
 | 项 | 结论 |
 |---|---|
+| 模型别名 | 网关额外提供 `chatai-default` / `chatai` / `default` 三个别名（映射到那个唯一后端），接渠道建议只用它 |
 | 上游 | `https://chatapi.begamob.com`，主端点 `POST /api/v1/chat` |
 | 鉴权 | **客户端自签 JWT-HS256**，HS256 密钥硬编码在 APK（`ax/bx/cx/jc.java`），无账号、无设备绑定、无注册 |
 | VIP 校验 | **纯客户端**（SharedPreferences 里的 `key_save_status_premium_data`），服务端不校验 → 自签 JWT 直接拿全部模型 |
@@ -295,6 +313,10 @@ cipher.init(DECRYPT_MODE, new SecretKeySpec(key, "AES"));   // → InvalidKeyExc
 ## 7. 目录
 
 ```
+├── docs/
+│   ├── NEWAPI-INTEGRATION.md # new-api 对接指南（两条路 + Go 骨架）
+│   └── PROTOCOL.md           # 上游协议规格（可独立复刻）
+├── model_quality_eval.md     # 17 名字 = 1 后端的评测证据
 ├── demo_server.py            # 网关（:8916）
 ├── demo.html                 # demo 页
 ├── stress_test.py            # R1 功能压测（17 用例）
