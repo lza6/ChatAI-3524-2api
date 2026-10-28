@@ -8,97 +8,103 @@
   {
     "case": "models list",
     "ok": true,
-    "detail": "17 models, first=gpt-4o",
+    "detail": "20 项（17 上游名 + 别名）, chatai-default=True",
     "ms": null
+  },
+  {
+    "case": "别名 chatai-default",
+    "ok": true,
+    "detail": "OK",
+    "ms": 1451
   },
   {
     "case": "baseline gpt-4o-mini",
     "ok": true,
     "detail": "OK",
-    "ms": 3715
+    "ms": 1274
   },
   {
     "case": "多轮中文对话",
     "ok": true,
     "detail": "京。",
-    "ms": 1891
+    "ms": 1226
   },
   {
     "case": "强模型 claude-4.5-opus",
     "ok": true,
     "detail": "OK",
-    "ms": 1904
+    "ms": 1319
   },
   {
     "case": "强模型 gemini-3-pro",
     "ok": true,
     "detail": "OK",
-    "ms": 1893
+    "ms": 1291
   },
   {
     "case": "强模型 gpt-5",
     "ok": true,
     "detail": "OK",
-    "ms": 1895
+    "ms": 1256
   },
   {
     "case": "SSE 流式（网关模拟）",
     "ok": true,
-    "detail": "chunks=9 ttft=2090ms total=2159ms",
-    "ms": 2159
+    "detail": "chunks=9 ttft=1458ms total=1528ms",
+    "ms": 1528
   },
   {
     "case": "未知模型拦截",
     "ok": true,
     "detail": "400 unknown model: no-such-model; see GET /v",
-    "ms": 2
+    "ms": 79
   },
   {
     "case": "缺 model",
     "ok": true,
     "detail": "400 model is required",
-    "ms": 2
+    "ms": 173
   },
   {
     "case": "空 messages",
     "ok": true,
     "detail": "400 messages is required",
-    "ms": 2
+    "ms": 92
   },
   {
     "case": "超长上下文拦截",
     "ok": true,
     "detail": "400 context too long: 130000 chars > 127000",
-    "ms": 8
+    "ms": 41
   },
   {
     "case": "max_tokens 超限自动钳制",
     "ok": true,
     "detail": "99999 -> 16384",
-    "ms": 1011
+    "ms": 1267
   },
   {
     "case": "多模态读图 (v3)",
     "ok": true,
-    "detail": "这是一张Python编程语言的标志。",
-    "ms": 2631
+    "detail": "这张图是Python编程语言的标志。",
+    "ms": 4958
   },
   {
     "case": "摘要 /v1/summarize",
     "ok": true,
-    "detail": "**** 人工智能是计算机科学的一个分支，致力于理解智能的本质并开发能够类似人类… 建议3条",
-    "ms": 1868
+    "detail": "**** 人工智能是计算机科学的一个分支，旨在理解智能的本质并开发类似人类智能的… 建议3条",
+    "ms": 2481
   },
   {
     "case": "并发 x6",
     "ok": true,
-    "detail": "6/6 200, p50=1065ms wall=1172ms",
+    "detail": "6/6 200, p50=1263ms wall=2137ms",
     "ms": null
   },
   {
     "case": "出网代理并发上限探针 x10",
     "ok": true,
-    "detail": "200x10 连接层失败x0 上游429/503x0 wall=2315ms",
+    "detail": "200x10 连接层失败x0 上游429/503x0 wall=3789ms",
     "ms": null
   }
 ]

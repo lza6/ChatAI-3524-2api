@@ -250,7 +250,7 @@ cipher.init(DECRYPT_MODE, new SecretKeySpec(key, "AES"));   // → InvalidKeyExc
 |---|---|
 | `demo_server.py` | :8916。`/v1/chat/completions`（非流式 + 网关侧 SSE 模拟 + **图片 URL 自动路由 v3 多模态**）、`/v1/summarize`、`/v1/models`、`/health`、`/stats`、`/api/getTime`、`/` demo 页。含 6 条 keep-alive 隧道池、未知模型白名单、`max_tokens` 钳制、上下文截断保护、连接层异常单次重试 |
 | `demo.html` | 中文聊天页：17 模型分组下拉、流式打字机、**图片 URL 输入（多模态）**、**摘要模式**、健康/统计面板 |
-| `stress_test.py` | R1 功能压测 17 用例 |
+| `stress_test.py` | R1 功能压测 18 用例 |
 | `stress_extreme.py` | 极限压测：阶梯并发 1→50、3×30 持续连发、上下文边界、全模型矩阵 |
 | `tools/probe_upstream.py` | 直打上游的独立协议探针（不经过网关） |
 | `tools/probe_art.py` | 绘图链路探针 + AES 密钥派生尝试 |
@@ -262,7 +262,7 @@ cipher.init(DECRYPT_MODE, new SecretKeySpec(key, "AES"));   // → InvalidKeyExc
 
 ## 4. 压测结论摘要
 
-- R1 功能：**17/17 PASS**（含错误路径 4 项、多模态读图、摘要、并发、钳制、上下文拦截）
+- R1 功能：**18/18 PASS**（含错误路径 4 项、多模态读图、摘要、别名、并发、钳制、上下文拦截）
 - 极限：阶梯 1/2/4/6/10/20/30/50 并发 → **123/123 全 200，零 429 零上游 5xx**
   （第 2 级曾有一次本机代理瞬时 SSLEOF，复测 4×2=8/8 全 200）；
   3×30 持续连发 **90/90 全 200，零 429**

@@ -34,7 +34,15 @@ def case_health():
 def case_models():
     r = requests.get(BASE + '/v1/models', timeout=10)
     ids = [m['id'] for m in r.json()['data']]
-    rec('models list', len(ids) == 17, f'{len(ids)} models, first={ids[0]}')
+    ok = len(ids) >= 17 and 'chatai-default' in ids
+    rec('models list', ok, f'{len(ids)} 项（17 上游名 + 别名）, chatai-default={("chatai-default" in ids)}')
+
+
+def case_alias():
+    r, ms = chat(model='chatai-default', content='reply exactly: OK')
+    ok = r.status_code == 200 and 'OK' in r.json()['choices'][0]['message']['content']
+    rec('别名 chatai-default', ok,
+        r.json()['choices'][0]['message']['content'][:30] if ok else r.text[:60], ms)
 
 
 def case_baseline():
@@ -167,6 +175,7 @@ def main():
     print(f'== ChatAI 35.2.4 2API R1 功能压测 @ {BASE}\n')
     case_health()
     case_models()
+    case_alias()
     case_baseline()
     case_chinese_multi_turn()
     case_strong_models()

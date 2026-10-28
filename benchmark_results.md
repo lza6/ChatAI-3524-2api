@@ -49,11 +49,12 @@ deepseek  grok-3  llama4  llama-3.1
 
 ---
 
-## 2. R1 功能压测（`stress_test.py`）→ **17/17 PASS**
+## 2. R1 功能压测（`stress_test.py`）→ **18/18 PASS**
 
 ```
 [PASS] health                             chatai-3524-2api models=17
-[PASS] models list                        17 models
+[PASS] models list                        20 项（17 上游名 + chatai-default/chatai/default 别名）
+[PASS] 别名 chatai-default                  OK  (1451 ms)
 [PASS] baseline gpt-4o-mini               OK  (3715 ms)
 [PASS] 多轮中文对话                        京。  (1891 ms)
 [PASS] 强模型 claude-4.5-opus              OK  (1904 ms)
