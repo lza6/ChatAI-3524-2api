@@ -1,0 +1,1155 @@
+[
+  {
+    "model": "gpt-4o",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1354,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1050,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1216,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1144,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67\n}",
+        "tokens": 14,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1553,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 4043,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 1976,
+        "text": "量子纠缠是一种量子力学现象，当两个或多个粒子相互作用后，它们的状态会变得紧密关联，无论它们相距多远。即使对其中一个粒子进行测量，另一个粒子的状态也会立即受到影响。这种现象挑战了我们对空间和信息传递的传统理解，表明在量子世界中，粒子之间存在一种超越经典物理的神秘联系。量子纠缠在量子计算和量子通信等领域具有重要应用潜力。",
+        "tokens": 152,
+        "pass": null,
+        "note": "量子纠缠是一种量子力学现象，当两个或多个粒子相互作用后，它们的状态会变得紧密关联，无论它们相距多远。即使对其中一个粒子进"
+      }
+    }
+  },
+  {
+    "model": "gpt-4o-mini",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1273,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1034,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1214,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1075,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67.06\n}",
+        "tokens": 15,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67.06"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1553,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 3795,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2164,
+        "text": "量子纠缠是一种量子物理现象，当两个或多个粒子相互作用后，它们的状态会变得紧密关联，无论它们相距多远。即使在很远的距离上，对一个粒子的测量会立即影响另一个粒子的状态。这种现象挑战了经典物理的观念，显示出量子世界的奇特性。量子纠缠在量子计算和量子通信等领域具有重要应用，可能改变我们对信息传递和计算的理解。",
+        "tokens": 144,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，当两个或多个粒子相互作用后，它们的状态会变得紧密关联，无论它们相距多远。即使在很远的距离上，"
+      }
+    }
+  },
+  {
+    "model": "gpt-5",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1142,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1127,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1058,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1465,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67.06\n}",
+        "tokens": 15,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67.06"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1583,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 3542,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2267,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密关联，即使它们相隔很远。当对其中一个粒子进行测量时，另一个粒子的状态会立即受到影响，无论它们之间的距离有多远。这种现象挑战了经典物理的局限，表明粒子之间存在一种神秘的联系。量子纠缠在量子计算和量子通信等领域具有重要应用，展示了微观世界的奇妙与复杂。",
+        "tokens": 149,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密关联，即使它们相隔很远。当对其中一个粒子进行测量时，另一"
+      }
+    }
+  },
+  {
+    "model": "gpt-5-mini",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1131,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1070,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1196,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1201,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67\n}",
+        "tokens": 14,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1568,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 3726,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 1851,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密关联，即使它们相隔很远。当对其中一个粒子进行测量时，另一个粒子的状态会立即受到影响，无论它们之间的距离有多远。这种现象挑战了经典物理的局限，显示出量子世界的奇特特性。量子纠缠在量子计算和量子通信等领域具有重要应用潜力。",
+        "tokens": 135,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密关联，即使它们相隔很远。当对其中一个粒子进行测量时，另一"
+      }
+    }
+  },
+  {
+    "model": "gpt-4.1",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1201,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1164,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1078,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1062,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67.06\n}",
+        "tokens": 15,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67.06"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1470,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 1441,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2271,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子之间存在一种特殊的联系，使得它们的状态相互依赖。即使这些粒子相隔很远，对其中一个粒子的测量会立即影响到另一个粒子的状态。这种现象挑战了我们对空间和时间的传统理解，表明粒子之间可以超越经典物理的局限，形成一种“瞬时”的联系。量子纠缠在量子计算和量子通信等领域具有重要应用潜力。",
+        "tokens": 153,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子之间存在一种特殊的联系，使得它们的状态相互依赖。即使这些粒子相隔很远，对"
+      }
+    }
+  },
+  {
+    "model": "gpt-4.1-mini",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1250,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1058,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1009,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1148,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67.06\n}",
+        "tokens": 15,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67.06"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1454,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 4375,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2305,
+        "text": "量子纠缠是一种量子力学现象，指的是两个或多个粒子之间存在一种特殊的关联，即使它们相隔很远，对其中一个粒子的测量会立即影响到另一个粒子的状态。这种现象超越了经典物理的理解，意味着粒子之间的信息可以瞬间传递。量子纠缠在量子计算和量子通信等领域有着重要应用，展示了微观世界的奇妙与复杂。简单来说，量子纠缠让我们看到粒子之间的深层联系，挑战了我们对空间和时间的传统认知。",
+        "tokens": 173,
+        "pass": null,
+        "note": "量子纠缠是一种量子力学现象，指的是两个或多个粒子之间存在一种特殊的关联，即使它们相隔很远，对其中一个粒子的测量会立即影响"
+      }
+    }
+  },
+  {
+    "model": "gpt-o3-mini",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1260,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1063,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1021,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1092,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67.06\n}",
+        "tokens": 15,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67.06"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1504,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 1447,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2501,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密关联，即使它们相隔很远。当对其中一个粒子进行测量时，另一个粒子的状态会立即受到影响，无论它们之间的距离有多远。这种现象挑战了经典物理的局限，显示了量子世界的奇特性。量子纠缠在量子计算和量子通信等领域具有重要应用，可能改变我们对信息传递和计算的理解。",
+        "tokens": 149,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密关联，即使它们相隔很远。当对其中一个粒子进行测量时，另一"
+      }
+    }
+  },
+  {
+    "model": "gpt-3.5-turbo",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1321,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1027,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1117,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1076,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67\n}",
+        "tokens": 14,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1488,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 1791,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2023,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密联系，即使它们相隔很远，对一个粒子的测量会立即影响到另一个粒子的状态。这种现象超越了经典物理的理解，表明粒子之间存在一种神秘的联系。量子纠缠在量子计算和量子通信中具有重要应用，可能改变我们对信息传递和计算的方式。简单来说，量子纠缠让粒子之间的关系超越了空间的限制。",
+        "tokens": 157,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密联系，即使它们相隔很远，对一个粒子的测量会立即影响到另一"
+      }
+    }
+  },
+  {
+    "model": "deepseek",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1124,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1175,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1193,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1360,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67\n}",
+        "tokens": 14,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1415,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 1527,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2132,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子之间存在一种特殊的关联，即使它们相隔很远，对其中一个粒子的测量会立即影响到另一个粒子的状态。这种现象超越了经典物理的理解，意味着粒子之间的联系不受距离限制。量子纠缠在量子计算和量子通信等领域具有重要应用，挑战了我们对信息和现实的传统观念。简单来说，量子纠缠让粒子之间的“心灵感应”成为可能。",
+        "tokens": 161,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子之间存在一种特殊的关联，即使它们相隔很远，对其中一个粒子的测量会立即影响"
+      }
+    }
+  },
+  {
+    "model": "grok-3",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1192,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1057,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1237,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1177,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67\n}",
+        "tokens": 14,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1542,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 2032,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2141,
+        "text": "量子纠缠是一种量子物理现象，当两个或多个粒子相互作用后，它们的状态会变得紧密关联。即使这些粒子相隔很远，对其中一个粒子的测量会立即影响到另一个粒子的状态。这种现象挑战了我们对空间和信息传递的传统理解，表明粒子之间可以以一种超越经典物理的方式相互联系。量子纠缠在量子计算和量子通信等领域具有重要应用潜力。",
+        "tokens": 146,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，当两个或多个粒子相互作用后，它们的状态会变得紧密关联。即使这些粒子相隔很远，对其中一个粒子的"
+      }
+    }
+  },
+  {
+    "model": "gemini-2.5-flash",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1221,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1023,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1032,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1240,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67.06\n}",
+        "tokens": 15,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67.06"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1767,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 1905,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2381,
+        "text": "量子纠缠是一种量子力学现象，当两个或多个粒子相互作用后，它们的状态会变得紧密关联，无论它们相距多远。即使在很远的距离上，对一个粒子的测量会立即影响到另一个粒子的状态。这种现象挑战了我们对空间和信息传递的传统理解，显示出量子世界的奇特性。量子纠缠在量子计算和量子通信等领域具有重要应用潜力。",
+        "tokens": 138,
+        "pass": null,
+        "note": "量子纠缠是一种量子力学现象，当两个或多个粒子相互作用后，它们的状态会变得紧密关联，无论它们相距多远。即使在很远的距离上，"
+      }
+    }
+  },
+  {
+    "model": "gemini-3-pro",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1179,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1029,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1069,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1075,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67\n}",
+        "tokens": 14,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1832,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 1901,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2166,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子之间存在一种特殊的关联，即使它们相隔很远，改变一个粒子的状态会立即影响另一个粒子的状态。这种现象违背了经典物理的直觉，表明粒子之间可以以一种超越空间距离的方式相互联系。量子纠缠在量子计算和量子通信等领域具有重要应用，展示了量子世界的奇妙与复杂。",
+        "tokens": 141,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子之间存在一种特殊的关联，即使它们相隔很远，改变一个粒子的状态会立即影响另"
+      }
+    }
+  },
+  {
+    "model": "llama-3.1",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1082,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1101,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1063,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1161,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67.06\n}",
+        "tokens": 15,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67.06"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1572,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 1564,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2138,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子之间的特殊联系。当这些粒子纠缠在一起时，无论它们相隔多远，对其中一个粒子的测量会立即影响到另一个粒子的状态。这种现象超越了经典物理的理解，挑战了我们对空间和信息传递的传统观念。量子纠缠在量子计算和量子通信等领域具有重要应用，展示了微观世界的奇妙与复杂。",
+        "tokens": 144,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子之间的特殊联系。当这些粒子纠缠在一起时，无论它们相隔多远，对其中一个粒子"
+      }
+    }
+  },
+  {
+    "model": "llama4",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1207,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 998,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1003,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1201,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67\n}",
+        "tokens": 14,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1703,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 1852,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2006,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子之间存在一种特殊的关联，即使它们相隔很远，改变一个粒子的状态会立即影响另一个粒子的状态。这种现象超越了经典物理的理解，表明粒子之间可以以一种非经典的方式相互联系。量子纠缠在量子计算和量子通信等领域具有重要应用，展示了微观世界的奇妙和复杂性。",
+        "tokens": 139,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子之间存在一种特殊的关联，即使它们相隔很远，改变一个粒子的状态会立即影响另"
+      }
+    }
+  },
+  {
+    "model": "claude-3.7-sonnet",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1068,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1102,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1112,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1121,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67\n}",
+        "tokens": 14,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1411,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 1363,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 1893,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密关联，即使它们相隔很远。简单来说，当一个粒子的状态被测量时，另一个粒子的状态会立即受到影响，无论它们之间的距离有多远。这种现象挑战了经典物理学的常识，表明粒子之间可以通过一种“超距”方式相互联系。量子纠缠在量子计算和量子通信等领域具有重要应用潜力。",
+        "tokens": 148,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密关联，即使它们相隔很远。简单来说，当一个粒子的状态被测量"
+      }
+    }
+  },
+  {
+    "model": "claude-4.5-sonnet",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1298,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1516,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 997,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1408,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67.06\n}",
+        "tokens": 15,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67.06"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 2423,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": true,
+        "ms": 1422,
+        "text": "BLUE-FALCON-7734",
+        "tokens": 5,
+        "pass": true,
+        "note": "BLUE-FALCON-7734"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 2008,
+        "text": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密关联，即使它们相距很远。当对其中一个粒子进行测量时，另一个粒子的状态会立即被确定，无论它们之间的距离有多远。这种现象挑战了经典物理的观念，表明粒子之间存在一种超越空间的联系。量子纠缠在量子计算和量子通信等领域具有重要应用潜力。",
+        "tokens": 139,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指的是两个或多个粒子在量子状态上紧密关联，即使它们相距很远。当对其中一个粒子进行测量时，另一"
+      }
+    }
+  },
+  {
+    "model": "claude-4.5-opus",
+    "probes": {
+      "identity": {
+        "probe": "identity",
+        "ok": true,
+        "ms": 1288,
+        "text": "我是一个独立开发的AI助手，训练数据截至2024年。",
+        "tokens": 21,
+        "pass": null,
+        "note": "我是一个独立开发的AI助手，训练数据截至2024年。"
+      },
+      "arith": {
+        "probe": "arith",
+        "ok": true,
+        "ms": 1164,
+        "text": "7006652",
+        "tokens": 2,
+        "pass": true,
+        "note": "7006652"
+      },
+      "compare": {
+        "probe": "compare",
+        "ok": true,
+        "ms": 1138,
+        "text": "9.11",
+        "tokens": 2,
+        "pass": false,
+        "note": "9.11"
+      },
+      "json": {
+        "probe": "json",
+        "ok": true,
+        "ms": 1145,
+        "text": "{\n  \"capital\": \"巴黎\",\n  \"population_million\": 67.06\n}",
+        "tokens": 15,
+        "pass": true,
+        "note": "JSON ok: 巴黎/67.06"
+      },
+      "code": {
+        "probe": "code",
+        "ok": true,
+        "ms": 1434,
+        "text": "```python\ndef is_pal(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True\n```",
+        "tokens": 49,
+        "pass": true,
+        "note": "有 def"
+      },
+      "needle": {
+        "probe": "needle",
+        "ok": false,
+        "ms": 34921,
+        "raw": "HTTP 502 {\"error\": {\"message\": \"upstream: upstream connect failed: ProxyError: HTTPSConnectionPool(host='chatapi.begamob.com', po"
+      },
+      "zh": {
+        "probe": "zh",
+        "ok": true,
+        "ms": 9558,
+        "text": "量子纠缠是一种量子物理现象，指两个或多个粒子在量子状态上紧密关联，无论它们相距多远。当对其中一个粒子进行测量时，另一个粒子的状态会立即受到影响，尽管它们之间没有任何物理连接。这种现象挑战了经典物理的观念，显示出量子世界的奇特性。量子纠缠在量子计算和量子通信等领域有着重要应用，可能会改变我们对信息传递和计算的理解。",
+        "tokens": 150,
+        "pass": null,
+        "note": "量子纠缠是一种量子物理现象，指两个或多个粒子在量子状态上紧密关联，无论它们相距多远。当对其中一个粒子进行测量时，另一个粒"
+      }
+    }
+  }
+]
